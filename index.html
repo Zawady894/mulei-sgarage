@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mulei's Garage</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#eef3f8;
+scroll-behavior:smooth;
+}
+
+/* NAV */
+nav{
+position:sticky;
+top:0;
+background:#2c4a66;
+display:flex;
+justify-content:center;
+z-index:1000;
+}
+nav a{
+color:white;
+padding:14px 18px;
+text-decoration:none;
+}
+nav a:hover{background:#00aaff}
+
+/* HEADER */
+header{
+background:#1f3b57;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* BANNER */
+.banner{
+height:320px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+font-size:30px;
+font-weight:bold;
+background-size:cover;
+background-position:center;
+transition:1s;
+}
+
+/* SECTIONS */
+section{
+padding:50px;
+text-align:center;
+}
+
+/* CARDS */
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+.card:hover{transform:translateY(-8px)}
+
+button{
+background:#00aaff;
+color:white;
+border:none;
+padding:10px;
+margin-top:10px;
+cursor:pointer;
+border-radius:6px;
+}
+
+/* BOOKING */
+input,select{
+padding:10px;
+width:60%;
+margin:10px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🚗 Mulei's Garage</h1>
+<p>Trusted Spare Parts & Professional Car Services</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#parts">Spare Parts</a>
+<a href="#booking">Booking</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" style="padding:0">
+<div class="banner" id="banner">
+Welcome to Mulei's Garage
+</div>
+</section>
+
+<!-- PARTS -->
+<section id="parts">
+<h2>🔧 Spare Parts</h2>
+
+<div class="container">
+
+<div class="card">
+<h3>Engine</h3>
+<p>KES 25,000</p>
+<button onclick="order('Engine')">Order</button>
+</div>
+
+<div class="card">
+<h3>Brake Pads</h3>
+<p>KES 3,500</p>
+<button onclick="order('Brake Pads')">Order</button>
+</div>
+
+<div class="card">
+<h3>Battery</h3>
+<p>KES 8,000</p>
+<button onclick="order('Battery')">Order</button>
+</div>
+
+<div class="card">
+<h3>Tyres</h3>
+<p>KES 6,500</p>
+<button onclick="order('Tyres')">Order</button>
+</div>
+
+</div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2>📅 Book a Service</h2>
+
+<input id="name" placeholder="Your Name"><br>
+<input id="car" placeholder="Car Model"><br>
+
+<select id="service">
+<option>Engine Repair</option>
+<option>Oil Change</option>
+<option>Diagnostics</option>
+<option>Wheel Alignment</option>
+</select><br>
+
+<button onclick="book()">Book via WhatsApp</button>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>📞 Contact Us</h2>
+<p>📍 Nairobi, Kenya</p>
+<p>📱 +254712206363</p>
+</section>
+
+<a class="whatsapp" target="_blank"
+href="https://wa.me/254712206363?text=Hello%20I%20need%20garage%20services">
+💬 WhatsApp
+</a>
+
+<script>
+
+/* 🌟 ROTATING BANNER */
+let banners=[
+{
+text:"Engine Repair Experts 🔧",
+img:"https://images.unsplash.com/photo-1487754180451-c456f719a1fc"
+},
+{
+text:"Affordable Spare Parts 💰",
+img:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7"
+},
+{
+text:"Fast & Reliable Service 🚗",
+img:"https://images.unsplash.com/photo-1625047509168-a7026f36de04"
+}
+];
+
+let i=0;
+function rotate(){
+let b=document.getElementById("banner");
+b.style.backgroundImage="url("+banners[i].img+")";
+b.innerHTML=banners[i].text;
+i=(i+1)%banners.length;
+}
+setInterval(rotate,3000);
+rotate();
+
+/* 📦 ORDER */
+function order(item){
+let phone="254712206363";
+let msg="Hello, I want "+item+" from Mulei's Garage";
+window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(msg));
+}
+
+/* 📅 BOOKING */
+function book(){
+let name=document.getElementById("name").value;
+let car=document.getElementById("car").value;
+let service=document.getElementById("service").value;
+
+let msg=`Hello, my name is ${name}. I need ${service} for ${car}.`;
+window.open("https://wa.me/254712206363?text="+encodeURIComponent(msg));
+}
+
+</script>
+
+</body>
+</html>
